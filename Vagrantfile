@@ -2,21 +2,17 @@
 # vi: set ft=ruby :
 
 # master config
-MASTER_NODE_HOSTNAME = 'Server'
 MASTER_NODE_1 = '192.168.56.10'
 MASTER_NODE_2 = '192.168.56.20'
 MASTER_NODE_3 = '192.168.56.30'
 
 # worker config
-WORKER_NODE_HOSTNAME = 'ServerWorker'
 WORKER_NODE_1 = '192.168.56.110'
 WORKER_NODE_2 = '192.168.56.120'
 WORKER_NODE_3 = '192.168.56.130'
 
 # machines config
-MEM_MASTER = 2048
 MEM_WORKER = 1024
-CPU_MASTER = 2
 CPU_WORKER = 1
 
 # create machines config
