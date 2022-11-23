@@ -33,7 +33,7 @@ Vagrant.configure("2") do |config|
 
   # first master node config
 	config.vm.define 'master1' do |master|
-		master.vm.hostname = MASTER_NODE_HOSTNAME
+		master.vm.hostname = 'master1'
 		master.vm.network :private_network, ip: MASTER_NODE_1
 		# configure shared folder
 		master.vm.synced_folder ".", "/mnt", type: "virtualbox"
@@ -46,7 +46,7 @@ Vagrant.configure("2") do |config|
   
   # second master node config
 	config.vm.define 'master2' do |master|
-		master.vm.hostname = MASTER_NODE_HOSTNAME
+		master.vm.hostname = 'master2'
 		master.vm.network :private_network, ip: MASTER_NODE_2
 		# configure shared folder
 		master.vm.synced_folder ".", "/mnt", type: "virtualbox"
@@ -59,7 +59,7 @@ Vagrant.configure("2") do |config|
   
   # third master node config
 	config.vm.define 'master3' do |master|
-		master.vm.hostname = MASTER_NODE_HOSTNAME
+		master.vm.hostname = 'master3'
 		master.vm.network :private_network, ip: MASTER_NODE_3
 		# configure shared folder
 		master.vm.synced_folder ".", "/mnt", type: "virtualbox"
@@ -72,7 +72,7 @@ Vagrant.configure("2") do |config|
 
   # worker node config
 	config.vm.define 'worker1' do |worker|
-		worker.vm.hostname = WORKER_NODE_HOSTNAME
+		worker.vm.hostname = 'worker1'
 		worker.vm.network :private_network, ip: WORKER_NODE_1
 		# configure shared folder
 		worker.vm.synced_folder ".", "/mnt", type: "virtualbox"
@@ -85,7 +85,7 @@ Vagrant.configure("2") do |config|
   
   # worker node config
 	config.vm.define 'worker2' do |worker|
-		worker.vm.hostname = WORKER_NODE_HOSTNAME
+		worker.vm.hostname = 'worker2'
 		worker.vm.network :private_network, ip: WORKER_NODE_2
 		# configure shared folder
 		worker.vm.synced_folder ".", "/mnt", type: "virtualbox"
@@ -98,7 +98,7 @@ Vagrant.configure("2") do |config|
   
   # worker node config
 	config.vm.define 'worker3' do |worker|
-		worker.vm.hostname = WORKER_NODE_HOSTNAME
+		worker.vm.hostname = 'worker3'
 		worker.vm.network :private_network, ip: WORKER_NODE_3
 		# configure shared folder
 		worker.vm.synced_folder ".", "/mnt", type: "virtualbox"
