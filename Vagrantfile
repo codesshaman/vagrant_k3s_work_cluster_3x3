@@ -2,14 +2,16 @@
 # vi: set ft=ruby :
 
 # master config
-MASTER_NODE_NAME = 'Jleslie'
 MASTER_NODE_HOSTNAME = 'Server'
-MASTER_NODE_IP = '192.168.56.110'
+MASTER_NODE_1 = '192.168.56.10'
+MASTER_NODE_2 = '192.168.56.20'
+MASTER_NODE_3 = '192.168.56.30'
 
 # worker config
-WORKER_NODE_NAME = 'Caugusta'
 WORKER_NODE_HOSTNAME = 'ServerWorker'
-WORKER_NODE_IP = '192.168.56.111'
+WORKER_NODE_1 = '192.168.56.110'
+WORKER_NODE_2 = '192.168.56.120'
+WORKER_NODE_3 = '192.168.56.130'
 
 # machines config
 MEM_MASTER = 2048
@@ -30,80 +32,80 @@ Vagrant.configure("2") do |config|
 	end
 
   # first master node config
-	config.vm.define MASTER_NODE_NAME do |master|
+	config.vm.define 'master1' do |master|
 		master.vm.hostname = MASTER_NODE_HOSTNAME
-		master.vm.network :private_network, ip: MASTER_NODE_IP
+		master.vm.network :private_network, ip: MASTER_NODE_1
 		# configure shared folder
 		master.vm.synced_folder ".", "/mnt", type: "virtualbox"
 		# run script for master node with argument
-		master.vm.provision "shell", privileged: true, path: "first_master_node_setup.sh", args: [MASTER_NODE_IP]
+		master.vm.provision "shell", privileged: true, path: "first_master_node_setup.sh", args: [MASTER_NODE_1]
 		master.vm.provider "virtualbox" do |v|
-			v.name = MASTER_NODE_NAME
+			v.name = 'master1'
 		end
 	end
   
   # second master node config
-	config.vm.define MASTER_NODE_NAME do |master|
+	config.vm.define 'master2' do |master|
 		master.vm.hostname = MASTER_NODE_HOSTNAME
-		master.vm.network :private_network, ip: MASTER_NODE_IP
+		master.vm.network :private_network, ip: MASTER_NODE_2
 		# configure shared folder
 		master.vm.synced_folder ".", "/mnt", type: "virtualbox"
 		# run script for master node with argument
-		master.vm.provision "shell", privileged: true, path: "master_node_setup.sh", args: [MASTER_NODE_IP]
+		master.vm.provision "shell", privileged: true, path: "master_node_setup.sh", args: [MASTER_NODE_2]
 		master.vm.provider "virtualbox" do |v|
-			v.name = MASTER_NODE_NAME
+			v.name = 'master2'
 		end
 	end
   
   # third master node config
-	config.vm.define MASTER_NODE_NAME do |master|
+	config.vm.define 'master3' do |master|
 		master.vm.hostname = MASTER_NODE_HOSTNAME
-		master.vm.network :private_network, ip: MASTER_NODE_IP
+		master.vm.network :private_network, ip: MASTER_NODE_3
 		# configure shared folder
 		master.vm.synced_folder ".", "/mnt", type: "virtualbox"
 		# run script for master node with argument
-		master.vm.provision "shell", privileged: true, path: "master_node_setup.sh", args: [MASTER_NODE_IP]
+		master.vm.provision "shell", privileged: true, path: "master_node_setup.sh", args: [MASTER_NODE_3]
 		master.vm.provider "virtualbox" do |v|
-			v.name = MASTER_NODE_NAME
+			v.name = 'master3'
 		end
 	end
 
   # worker node config
-	config.vm.define WORKER_NODE_NAME do |worker|
+	config.vm.define 'worker1' do |worker|
 		worker.vm.hostname = WORKER_NODE_HOSTNAME
-		worker.vm.network :private_network, ip: WORKER_NODE_IP
+		worker.vm.network :private_network, ip: WORKER_NODE_1
 		# configure shared folder
 		worker.vm.synced_folder ".", "/mnt", type: "virtualbox"
 		# run script for worker node with arguments
-		worker.vm.provision "shell", privileged: true, path: "scripts/worker_node_setup.sh", args: [MASTER_NODE_IP, WORKER_NODE_IP]
+		worker.vm.provision "shell", privileged: true, path: "scripts/worker_node_setup.sh", args: [MASTER_NODE_IP, WORKER_NODE_1]
 		worker.vm.provider "virtualbox" do |v|
-			v.name = WORKER_NODE_NAME 
+			v.name = 'worker1'
 		end
 	end
   
   # worker node config
-	config.vm.define WORKER_NODE_NAME do |worker|
+	config.vm.define 'worker2' do |worker|
 		worker.vm.hostname = WORKER_NODE_HOSTNAME
-		worker.vm.network :private_network, ip: WORKER_NODE_IP
+		worker.vm.network :private_network, ip: WORKER_NODE_2
 		# configure shared folder
 		worker.vm.synced_folder ".", "/mnt", type: "virtualbox"
 		# run script for worker node with arguments
-		worker.vm.provision "shell", privileged: true, path: "scripts/worker_node_setup.sh", args: [MASTER_NODE_IP, WORKER_NODE_IP]
+		worker.vm.provision "shell", privileged: true, path: "scripts/worker_node_setup.sh", args: [MASTER_NODE_IP, WORKER_NODE_2]
 		worker.vm.provider "virtualbox" do |v|
-			v.name = WORKER_NODE_NAME 
+			v.name = 'worker2'
 		end
 	end
   
   # worker node config
-	config.vm.define WORKER_NODE_NAME do |worker|
+	config.vm.define 'worker3' do |worker|
 		worker.vm.hostname = WORKER_NODE_HOSTNAME
-		worker.vm.network :private_network, ip: WORKER_NODE_IP
+		worker.vm.network :private_network, ip: WORKER_NODE_3
 		# configure shared folder
 		worker.vm.synced_folder ".", "/mnt", type: "virtualbox"
 		# run script for worker node with arguments
-		worker.vm.provision "shell", privileged: true, path: "scripts/worker_node_setup.sh", args: [MASTER_NODE_IP, WORKER_NODE_IP]
+		worker.vm.provision "shell", privileged: true, path: "scripts/worker_node_setup.sh", args: [MASTER_NODE_IP, WORKER_NODE_3]
 		worker.vm.provider "virtualbox" do |v|
-			v.name = WORKER_NODE_NAME 
+			v.name = 'worker3'
 		end
 	end
 end
