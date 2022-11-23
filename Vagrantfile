@@ -12,8 +12,8 @@ WORKER_NODE_2 = '192.168.56.120'
 WORKER_NODE_3 = '192.168.56.130'
 
 # machines config
-MEM_WORKER = 1024
-CPU_WORKER = 1
+MEM = 1024
+CPU = 1
 
 # create machines config
 Vagrant.configure("2") do |config|
