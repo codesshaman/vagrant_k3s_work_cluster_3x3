@@ -77,7 +77,7 @@ Vagrant.configure("2") do |config|
 		# configure shared folder
 		worker.vm.synced_folder ".", "/mnt", type: "virtualbox"
 		# run script for worker node with arguments
-		worker.vm.provision "shell", privileged: true, path: "scripts/worker_node_setup.sh", args: [MASTER_NODE_IP, WORKER_NODE_1]
+		worker.vm.provision "shell", privileged: true, path: "worker_node_setup.sh", args: [MASTER_NODE_IP, WORKER_NODE_1]
 		worker.vm.provider "virtualbox" do |v|
 			v.name = 'worker1'
 		end
@@ -90,7 +90,7 @@ Vagrant.configure("2") do |config|
 		# configure shared folder
 		worker.vm.synced_folder ".", "/mnt", type: "virtualbox"
 		# run script for worker node with arguments
-		worker.vm.provision "shell", privileged: true, path: "scripts/worker_node_setup.sh", args: [MASTER_NODE_IP, WORKER_NODE_2]
+		worker.vm.provision "shell", privileged: true, path: "worker_node_setup.sh", args: [MASTER_NODE_IP, WORKER_NODE_2]
 		worker.vm.provider "virtualbox" do |v|
 			v.name = 'worker2'
 		end
@@ -103,7 +103,7 @@ Vagrant.configure("2") do |config|
 		# configure shared folder
 		worker.vm.synced_folder ".", "/mnt", type: "virtualbox"
 		# run script for worker node with arguments
-		worker.vm.provision "shell", privileged: true, path: "scripts/worker_node_setup.sh", args: [MASTER_NODE_IP, WORKER_NODE_3]
+		worker.vm.provision "shell", privileged: true, path: "worker_node_setup.sh", args: [MASTER_NODE_IP, WORKER_NODE_3]
 		worker.vm.provider "virtualbox" do |v|
 			v.name = 'worker3'
 		end
