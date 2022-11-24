@@ -35,6 +35,13 @@ Vagrant.configure("2") do |config|
 		master.vm.synced_folder ".", "/mnt", type: "virtualbox"
 		# run script for master node with argument
 		master.vm.provision "shell", privileged: true, path: "first_master_node_setup.sh", args: [MASTER_NODE_1]
+		config.vm.network "forwarded_port", guest: 6443, host: 6443, protocol: "tcp"
+		config.vm.network "forwarded_port", guest: 8472, host: 8472, protocol: "udp"
+		config.vm.network "forwarded_port", guest: 51820, host: 51820, protocol: "udp"
+		config.vm.network "forwarded_port", guest: 51821, host: 51821, protocol: "udp"
+		config.vm.network "forwarded_port", guest: 10250, host: 10250, protocol: "tcp"
+		config.vm.network "forwarded_port", guest: 2379, host: 2379, protocol: "tcp"
+		config.vm.network "forwarded_port", guest: 2380, host: 2380, protocol: "tcp"
 		master.vm.provider "virtualbox" do |v|
 			v.name = 'master1'
 		end

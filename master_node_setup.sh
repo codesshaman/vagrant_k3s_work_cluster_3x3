@@ -15,7 +15,7 @@ sudo ufw allow 2379/tcp
 sudo ufw allow 2380/tcp
 
 # download and run k3s agent
-curl -sfL https://get.k3s.io | K3S_TOKEN='^SH{Ge-jhWHdP<X"lX0A' sh -s - server --cluster init
+curl -sfL https://get.k3s.io | K3S_TOKEN='^SH{Ge-jhWHdP<X"lX0A' sh -s - server --server $1
 
 # copy master node token for worker node
 sudo cp /var/lib/rancher/k3s/server/node-token /mnt/token/
