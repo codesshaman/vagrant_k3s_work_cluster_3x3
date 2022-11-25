@@ -3,9 +3,12 @@
 #update system
 sudo apt update && sudo apt upgrade -y --force
 
+# add k3s in env
+export INSTALL_K3S_EXEC="--write-kubeconfig-mode=644 --tls-san $(hostname) --node-ip 192.168.56.10  --bind-address=192.168.56.10 --advertise-address=192.168.56.10"
+
 #download and configure firewall
 sudo apt install -y ufw
-sudo ufw enable
+sudo ufw enable -y
 sudo ufw allow 6443/tcp
 sudo ufw allow 8472/udp
 sudo ufw allow 51820/udp
